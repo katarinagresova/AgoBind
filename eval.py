@@ -4,7 +4,7 @@ from sklearn.metrics import f1_score
 from tqdm import tqdm
 import pandas as pd
 
-def get_test_score(encoded_samples_test, model, dataset_name):
+def get_test_score(encoded_samples_test, model):
     print('Computing test score')
     test_loader = DataLoader(
                 encoded_samples_test, 
