@@ -66,3 +66,5 @@ def compute_pr_curve(encoded_samples_test, model):
     #display plot
     plt.show()
     plt.savefig('pr.png')
+
+    return recall, precision
