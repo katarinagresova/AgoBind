@@ -18,7 +18,7 @@ for _ in range(5):
         "random_weights":False,
         "kmer_len" : 6,
         "stride" : 1,
-        "early_stopping_patience" : 20, 
+        "early_stopping_patience" : 10, 
         "learning_rate" : 2e-4,
         "weight_decay":0.01,
         "backbone":get_dnabert, 
