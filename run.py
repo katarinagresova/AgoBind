@@ -46,7 +46,7 @@ args = TrainingArguments(output_dir="output_checkpoints",
                         )
 
 
-
+comet_ml.init()
 experiment = comet_ml.Experiment(api_key='3NQhHgMmmlfnoqTcvkG03nYo9', project_name="dnabert_for_clash")
 
 model, tokenizer = config['backbone'](config) 
