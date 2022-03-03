@@ -9,7 +9,7 @@ config = {
     "train_data" : 'data/train_set_1_10_CLASH2013_paper.tsv',
     "test_data": 'data/evaluation_set_1_10_CLASH2013_paper.tsv',
     "eval_dset_ratio" : 0.2, #Deducted from the train set
-    "batch_size" : 12,
+    "batch_size" : 64,
     "gradient_accumulation_steps":4,
     "eval_steps" : 100,
     "freeze":False ,
