@@ -55,6 +55,6 @@ def get_predictions_and_labels(test_data, encoded_samples_test, model):
         preds = outputs.logits.argmax(-1).tolist()
         predictions.extend(preds)
 
-    labels = pd.read_csv(test_data, sep='/t', usecols=['label']).to_numpy()
+    labels = pd.read_csv(test_data, sep='\t', usecols=['label']).to_numpy()
 
     return predictions, labels
