@@ -18,7 +18,7 @@ config = {
     "random_weights":False,
     "kmer_len" : 6,
     "stride" : 1,
-    "early_stopping_patience" : 10, 
+    "early_stopping_patience" : 2, 
     "learning_rate" : 2e-4,
     "weight_decay":0.01,
     "backbone":get_dnabert, 
@@ -46,18 +46,17 @@ args = TrainingArguments(output_dir="output_checkpoints",
                         )
 
 
-comet_ml.init()
-experiment = comet_ml.Experiment(api_key='3NQhHgMmmlfnoqTcvkG03nYo9', project_name="dnabert_for_clash")
+comet_ml.init(project_name='dnabert_for_clash', api_key='3NQhHgMmmlfnoqTcvkG03nYo9')
 
 model, tokenizer = config['backbone'](config) 
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
 f1_score_test = get_test_score(encoded_samples_test, trained_model)
 recall, precision = compute_pr_curve(encoded_samples_test, trained_model)
-#log_extra(config, f1_score_test, recall, precision)
-experiment.log_parameters(config)
-experiment.log_metric("test F1 score", f1_score_test)
-experiment.log_curve(f"pr-curve", recall, precision)
+log_extra(config, f1_score_test, recall, precision)
+#experiment.log_parameters(config)
+#experiment.log_metric("test F1 score", f1_score_test)
+#experiment.log_curve(f"pr-curve", recall, precision)
 
-experiment.end()
+#experiment.end()
 
 print('ALL DONE')
