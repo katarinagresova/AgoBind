@@ -6,8 +6,8 @@ from log_utils import log_extra
 from training import get_trained_model
 
 config = {
-    "train_data" : 'data/train_set_1_1_CLASH2013_paper.tsv',
-    "test_data": 'data/evaluation_set_1_1_CLASH2013_paper.tsv',
+    "train_data" : 'data/train_set_1_100_CLASH2013_paper.tsv',
+    "test_data": 'data/evaluation_set_1_100_CLASH2013_paper.tsv',
     "eval_dset_ratio" : 0.2, #Deducted from the train set
     "batch_size" : 12,
     "gradient_accumulation_steps":4,
