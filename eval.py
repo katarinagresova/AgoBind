@@ -15,20 +15,17 @@ def get_test_score(predictions, labels):
 def compute_pr_curve(predictions, labels):
     print('Computing precision-recall curve')
 
-    #calculate precision and recall
-    precision, recall, thresholds = precision_recall_curve(labels, predictions)
+    plt.figure()
 
-    #create precision recall curve
-    fig, ax = plt.subplots()
-    ax.plot(recall, precision, color='orange')
+    precision, recall, _ = precision_recall_curve(labels, predictions)
+    print("PRECISIONS:", precision)
+    print("RECALLS:", recall)
+    plt.plot(recall, precision)
 
-    #add axis labels to plot
-    ax.set_title('Precision-Recall Curve')
-    ax.set_ylabel('Precision')
-    ax.set_xlabel('Recall')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.savefig('PR.png')
 
-    #display plot
-    plt.show()
     plt.savefig('pr.png')
 
     return recall, precision
