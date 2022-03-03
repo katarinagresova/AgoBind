@@ -28,7 +28,8 @@ def compute_metrics(pred):
 def get_trained_model(config, args, model, tokenizer):
 
     encoded_samples, encoded_samples_test = get_preprocessed_datasets(
-        #config['dataset_name'], 
+        config['train_data'], 
+        config['test_data'], 
         tokenizer, 
         kmer_len=config['kmer_len'], 
         stride=config['stride'],

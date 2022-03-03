@@ -37,14 +37,12 @@ def preprocess_datasets(train_dset, test_dset, tokenizer, kmer_len, stride):
 
     return encoded_samples, encoded_samples_test
 
-def get_preprocessed_datasets(tokenizer, kmer_len, stride):
-    #train_dset = get_dataset(dataset_name ,'train', version=0)
-    #test_dset = get_dataset(dataset_name ,'test', version=0)
+def get_preprocessed_datasets(train_data, test_data, tokenizer, kmer_len, stride):
 
-    train_dset = pd.read_csv('CLASH_train.tsv', sep='\t')
+    train_dset = pd.read_csv(train_data, sep='\t')
     train_dset['seq'] = train_dset.apply(lambda x: x['miRNA'] + 'NNNN' + x['gene'], axis=1)
 
-    test_dset = pd.read_csv('CLASH_eval.tsv', sep='\t')
+    test_dset = pd.read_csv(test_data, sep='\t')
     test_dset['seq'] = test_dset.apply(lambda x: x['miRNA'] + 'NNNN' + x['gene'], axis=1)
 
     return preprocess_datasets(train_dset[['seq', 'label']].to_numpy(), test_dset[['seq', 'label']].to_numpy(), tokenizer, kmer_len, stride)

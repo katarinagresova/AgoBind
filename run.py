@@ -5,10 +5,9 @@ from transformers import TrainingArguments
 from log_utils import log_extra
 from training import get_trained_model
 
-#for dataset_name in ["human_enhancers_cohn", "human_enhancers_ensembl", "human_nontata_promoters", "demo_coding_vs_intergenomic_seqs", "demo_human_or_worm"]:
-#for _ in range(5):
 config = {
-    #"dataset_name" : dataset_name,
+    "train_data" : 'data/train_set_1_1_CLASH2013_paper.tsv',
+    "eval_data": 'data/evaluation_set_1_1_CLASH2013_paper.tsv',
     "eval_dset_ratio" : 0.2, #Deducted from the train set
     "batch_size" : 12,
     "gradient_accumulation_steps":4,
@@ -53,10 +52,5 @@ trained_model, encoded_samples_test = get_trained_model(config, args, model, tok
 f1_score_test = get_test_score(encoded_samples_test, trained_model)
 recall, precision = compute_pr_curve(encoded_samples_test, trained_model)
 log_extra(config, f1_score_test, recall, precision)
-#experiment.log_parameters(config)
-#experiment.log_metric("test F1 score", f1_score_test)
-#experiment.log_curve(f"pr-curve", recall, precision)
-
-#experiment.end()
 
 print('ALL DONE')
