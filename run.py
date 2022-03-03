@@ -18,7 +18,7 @@ config = {
     "random_weights":False,
     "kmer_len" : 6,
     "stride" : 1,
-    "early_stopping_patience" : 1, 
+    "early_stopping_patience" : 10, 
     "learning_rate" : 2e-4,
     "weight_decay":0.01,
     "backbone":get_dnabert, 
@@ -45,10 +45,7 @@ args = TrainingArguments(output_dir="output_checkpoints",
                         metric_for_best_model="eval_loss"
                         )
 
-
-
-comet_ml.init( api_key='dQZZ7xTG0tPZ4sSWBQrE7MWyO')
-experiment = comet_ml.Experiment(project_name="dnabert_for_clash")
+experiment = comet_ml.Experiment(api_key='dQZZ7xTG0tPZ4sSWBQrE7MWyO', project_name="dnabert_for_clash")
 
 model, tokenizer = config['backbone'](config) 
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
