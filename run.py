@@ -45,7 +45,9 @@ args = TrainingArguments(output_dir="output_checkpoints",
                         metric_for_best_model="eval_loss"
                         )
 
-experiment = comet_ml.Experiment(api_key='dQZZ7xTG0tPZ4sSWBQrE7MWyO', project_name="dnabert_for_clash")
+
+
+experiment = comet_ml.Experiment(api_key='dQZZ7xTG0tPZ4sSWBQrE7MWyO', project_name="dnabert_finetuning")
 
 model, tokenizer = config['backbone'](config) 
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
