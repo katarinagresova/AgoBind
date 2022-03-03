@@ -1,6 +1,6 @@
 import comet_ml
 from models import get_dnabert
-from eval import get_test_score, compute_pr_curve
+from eval import get_test_score, compute_pr_curve, get_predictions_and_labels
 from transformers import TrainingArguments
 from log_utils import log_extra
 from training import get_trained_model
@@ -49,8 +49,10 @@ comet_ml.init(project_name='dnabert_for_clash', api_key='3NQhHgMmmlfnoqTcvkG03nY
 
 model, tokenizer = config['backbone'](config) 
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
-f1_score_test = get_test_score(config['test_data'], encoded_samples_test, trained_model)
-recall, precision = compute_pr_curve(config['test_data'], encoded_samples_test, trained_model)
+
+predictions, labels = get_predictions_and_labels(config['test_data'], encoded_samples_test, trained_model)
+f1_score_test = get_test_score(predictions, labels)
+recall, precision = compute_pr_curve(predictions, labels)
 log_extra(config, f1_score_test, recall, precision)
 
 print('ALL DONE')

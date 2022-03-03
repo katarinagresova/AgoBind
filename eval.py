@@ -6,18 +6,14 @@ import pandas as pd
 from sklearn.metrics import precision_recall_curve
 import matplotlib.pyplot as plt
 
-def get_test_score(test_data, encoded_samples_test, model):
+def get_test_score(predictions, labels):
 
-    predictions, labels = get_predictions_and_labels(test_data, encoded_samples_test, model)
-
-    score = f1_score(labels, predictions)
+    score = f1_score(predictions, labels)
     print('test f1 score is', score)
     return score
 
-def compute_pr_curve(test_data, encoded_samples_test, model):
+def compute_pr_curve(predictions, labels):
     print('Computing precision-recall curve')
-    
-    predictions, labels = get_predictions_and_labels(test_data, encoded_samples_test, model)
 
     #calculate precision and recall
     precision, recall, thresholds = precision_recall_curve(labels, predictions)
