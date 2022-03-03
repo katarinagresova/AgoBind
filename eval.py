@@ -14,7 +14,7 @@ def get_test_score(test_data, encoded_samples_test, model):
     print('test f1 score is', score)
     return score
 
-def compute_pr_curve(encoded_samples_test, model):
+def compute_pr_curve(test_data, encoded_samples_test, model):
     print('Computing precision-recall curve')
     
     predictions, labels = get_predictions_and_labels(test_data, encoded_samples_test, model)

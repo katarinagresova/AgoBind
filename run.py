@@ -49,8 +49,8 @@ comet_ml.init(project_name='dnabert_for_clash', api_key='3NQhHgMmmlfnoqTcvkG03nY
 
 model, tokenizer = config['backbone'](config) 
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
-f1_score_test = get_test_score(encoded_samples_test, trained_model)
-recall, precision = compute_pr_curve(encoded_samples_test, trained_model)
+f1_score_test = get_test_score(config['test_data'], encoded_samples_test, trained_model)
+recall, precision = compute_pr_curve(config['test_data'], encoded_samples_test, trained_model)
 log_extra(config, f1_score_test, recall, precision)
 
 print('ALL DONE')
