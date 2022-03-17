@@ -1,6 +1,6 @@
 import comet_ml
 from models import get_dnabert
-from eval import get_test_score, compute_pr_curve, get_probs_and_labels
+from eval import get_f1_score, compute_pr_curve, get_probs_and_labels
 from transformers import TrainingArguments
 from log_utils import log_extra
 from training import get_trained_model

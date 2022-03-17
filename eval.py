@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.special import softmax
 
-def get_test_score(probs, labels):
+def get_f1_score(probs, labels):
 
     predictions = [1 if prob > 0.5 else 0 for prob in probs]
     score = f1_score(predictions, labels)
-    print('test f1 score is', score)
+    print('F1 score is', score)
     return score
 
 def compute_pr_curve(probs, labels):
@@ -21,38 +21,32 @@ def compute_pr_curve(probs, labels):
     plt.figure()
 
     precision, recall, _ = precision_recall_curve(labels, probs)
-    print("PRECISIONS:", precision)
-    print("RECALLS:", recall)
     plt.plot(recall, precision)
 
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.savefig('PR.png')
 
-    plt.savefig('pr.png')
-
     return recall, precision
 
 def get_probs_and_labels(test_data, encoded_samples_test, model):
+    """ Run inference and get predictions of a model together with true labels.
+    """
     test_loader = DataLoader(
                 encoded_samples_test, 
                 sampler = SequentialSampler(encoded_samples_test), 
                 batch_size = 4 #TODO increase with your CPU
             )
 
-    predictions = []
-    # for sample in tqdm(test_loader, total=len(test_dset)/32):
+    probabilities = []
 
     for sample in tqdm(test_loader, total=len(test_loader)): 
 
         outputs = model.to("cpu")(**sample)
-        # outputs = model(**sample) #TODO make eval on GPU
-
-        #preds = outputs.logits.argmax(-1).tolist()
-        preds = np.array(outputs.logits.tolist())
-        preds = softmax(preds, axis=1)[:, 1]
-        predictions.extend(preds)
+        probs = np.array(outputs.logits.tolist())
+        probs = softmax(probs, axis=1)[:, 1]
+        probabilities.extend(probs)
 
     labels = pd.read_csv(test_data, sep='\t', usecols=['label']).to_numpy()
 
-    return predictions, labels
+    return probabilities, labels
