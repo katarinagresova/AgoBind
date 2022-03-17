@@ -4,10 +4,11 @@ from eval import get_test_score, compute_pr_curve, get_probs_and_labels
 from transformers import TrainingArguments
 from log_utils import log_extra
 from training import get_trained_model
+import sys
 
 config = {
-    "train_data" : 'data/train_set_1_1_CLASH2013_paper.tsv',
-    "test_data": 'data/evaluation_set_1_1_CLASH2013_paper.tsv',
+    "train_data" : sys.argv[1],
+    "test_data": sys.argv[2],
     "eval_dset_ratio" : 0.2, #Deducted from the train set
     "batch_size" : 64,
     "gradient_accumulation_steps":4,
@@ -42,8 +43,7 @@ args = TrainingArguments(output_dir="output_checkpoints",
                         save_total_limit=5,
                         gradient_accumulation_steps=config['gradient_accumulation_steps'],
                         metric_for_best_model="eval_loss"
-                        )
-
+)
 
 comet_ml.init(project_name='dnabert_for_clash', api_key='3NQhHgMmmlfnoqTcvkG03nYo9')
 
