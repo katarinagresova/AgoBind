@@ -36,7 +36,7 @@ def get_preprocessed_datasets(train_data, test_data, tokenizer, kmer_len, stride
 
     train_dset = pd.read_csv(train_data, sep='\t')
     train_dset['seq'] = train_dset.apply(lambda x: x['miRNA'] + 'NNNN' + x['gene'], axis=1)
-    max_seq_len = max([len(train_dset[i][0]) for i in range(len(train_dset))])
+    max_seq_len = max([len(train_dset.loc[i]['seq']) for i in range(len(train_dset))])
     max_seq_len = max_seq_len if max_seq_len < 512 else 512 
     encoded_samples = preprocess_datasets(train_dset[['seq', 'label']].to_numpy(), tokenizer, kmer_len, stride, max_seq_len)
     random.shuffle(encoded_samples) #Shuffle the train set
