@@ -51,7 +51,7 @@ model, tokenizer = config['backbone'](config)
 trained_model, encoded_samples_test = get_trained_model(config, args, model, tokenizer)
 
 probs, labels = get_probs_and_labels(config['test_data'], encoded_samples_test, trained_model)
-f1_score_test = get_test_score(probs, labels)
+f1_score_test = get_f1_score(probs, labels)
 recall, precision = compute_pr_curve(probs, labels)
 log_extra(config, f1_score_test, recall, precision)
 

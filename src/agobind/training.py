@@ -1,5 +1,5 @@
-from models import get_dnabert
-from preprocessing import get_preprocessed_datasets
+from agobind.models import get_dnabert
+from agobind.preprocessing import get_preprocessed_datasets
 from transformers import Trainer, EarlyStoppingCallback
 from transformers.integrations import CometCallback
 from sklearn.metrics import auc, accuracy_score, precision_recall_fscore_support, precision_recall_curve
