@@ -46,4 +46,4 @@ def get_trained_model(config, args, model, tokenizer):
     trainer.train() 
 
     #TODO get_test_set_differently?
-    return trainer.model, encoded_samples_test
+    return trainer, encoded_samples_test
