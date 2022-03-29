@@ -4,9 +4,11 @@ from transformers import TrainingArguments
 from agobind.log_utils import log_extra
 from agobind.training import get_trained_model
 import sys
-import json
+import pickle
 
-config = json.loads(sys.argv[1])
+with open(sys.argv[1], 'rb') as handle:
+    config = pickle.load(handle)
+    
 args = TrainingArguments(output_dir="output_checkpoints",
                         learning_rate=config['learning_rate'],
                         weight_decay=config['weight_decay'], 
