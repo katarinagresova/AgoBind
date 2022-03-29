@@ -1,34 +1,10 @@
 import comet_ml
-from agobind.models import get_dnabert
 from agobind.eval import get_f1_score, compute_pr_curve, get_probs_and_labels
 from transformers import TrainingArguments
 from agobind.log_utils import log_extra
 from agobind.training import get_trained_model
-from agobind.preprocessing import get_preprocessed_datasets
-import sys
-
-
-
-{
-    "train_data" : sys.argv[1],
-    "test_data": sys.argv[2],
-    "eval_dset_ratio" : 0.2, #Deducted from the train set
-    "batch_size" : 64,
-    "gradient_accumulation_steps":4,
-    "eval_steps" : 100,
-    "freeze":False ,
-    "layers_to_unfreeze":None,
-    "random_weights":False,
-    "kmer_len" : 6,
-    "stride" : 1,
-    "early_stopping_patience" : 5, 
-    "learning_rate" : 2e-4,
-    "weight_decay":0.01,
-    "backbone":get_dnabert, 
-}
 
 def run(config):
-    config = sys.argv[1]
     args = TrainingArguments(output_dir="output_checkpoints",
                             learning_rate=config['learning_rate'],
                             weight_decay=config['weight_decay'], 
