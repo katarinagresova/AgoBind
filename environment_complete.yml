@@ -1,0 +1,50 @@
+name: agobind-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - pip>=22.0.4
+  - numpy>=1.22.0
+  - pandas>=1.4.0
+  - scikit-learn>=1.0.2
+  - matplotlib>=3.5.1
+  - seaborn>=0.11.2
+  # PyTorch ecosystem
+  - pytorch>=1.11.0
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.3  # For GPU support, adjust version if needed
+  # Hugging Face libraries
+  - transformers>=4.18.0
+  - datasets>=2.0.0
+  - tokenizers>=0.12.1
+  # Bioinformatics packages
+  - biopython>=1.79
+  - pysam
+  - bioconda::mappy  # For genomic mapping
+  # Development tools
+  - pytest>=7.0.0
+  - black>=22.1.0
+  - flake8>=4.0.1
+  - isort>=5.10.1
+  - jupyter>=1.0.0
+  - ipykernel
+  - ipywidgets
+  # I/O and data processing
+  - h5py
+  - scipy
+  - tqdm
+  - pyyaml
+  - pip:
+    # Additional packages needed for specific models
+    - einops>=0.4.1  # Required by DNABERT-2
+    - accelerate>=0.16.0  # For faster model loading and inference
+    - tensorboard>=2.8.0
+    - wandb  # For experiment tracking
+    - sentencepiece  # For tokenization in some models
+    # Visualization tools
+    - plotly
+    - umap-learn
+    - tensorboardX 

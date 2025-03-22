@@ -1,23 +1,62 @@
 # AgoBind
 
-## Usage 
+A Python package for genomic sequence classification tasks.
 
-You can install this package using pip and github repository as follows:
+## Overview
 
-```bash
-pip install git+https://github.com/katarinagresova/AgoBind
-```
+This package facilitates the use of pre-trained models from Hugging Face for embedding and classifying genomic sequences. It provides a streamlined interface for loading genomic datasets, extracting embeddings, fine-tuning models, and evaluating classification performance.
 
-## Local development
+## Installation
 
-If you want to run experiments from this repository or contribute to the package, use following commands to clone the repository and install the package into virtual environment.
+### Using conda (recommended)
 
 ```bash
-git clone git@github.com:katarinagresova/AgoBind.git
-cd AgoBind
+# Clone the repository
+git clone https://github.com/yourusername/agobind.git
+cd agobind
 
-virtualenv venv --python=python3.8
-source venv/bin/activate
+# Create and activate conda environment
+conda env create -f environment.yml
+conda activate genomic-ml
 
+# Install package in development mode
 pip install -e .
 ```
+
+### Using pip
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/agobind.git
+cd agobind
+
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install package in development mode
+pip install -e .
+```
+
+## Features
+
+- Load and preprocess genomic sequence data from CSV files
+- Access pre-trained genomic models from Hugging Face
+- Extract embeddings from genomic sequences
+- Fine-tune models for classification tasks
+- Evaluate model performance with specialized metrics
+
+## Usage
+
+Example code will be provided once the initial implementation is complete.
+
+## Development
+
+See [PLAN.md](PLAN.md) for development roadmap and implementation details.
+
+## License
+
+MIT License 
